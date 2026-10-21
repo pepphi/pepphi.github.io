@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pepphi</title>
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; background: #f6f6f4; color: #222; }
+    main { max-width: 1000px; margin: 0 auto; padding: 2rem 1rem; }
+    figure { margin: 0 0 2rem; }
+    img { display: block; width: 100%; height: auto; border-radius: 8px; }
+    figcaption { margin-top: .5rem; color: #666; font-size: .95rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Pepphi</h1>
+
+    <figure>
+      <picture>
+        <source type="image/webp" srcset="kuvat/lappi-talvi-800.webp 800w, kuvat/lappi-talvi.webp 1500w" sizes="(max-width: 1000px) 100vw, 1000px">
+        <img src="kuvat/lappi-talvi.jpg" srcset="kuvat/lappi-talvi-800.jpg 800w, kuvat/lappi-talvi.jpg 1500w" sizes="(max-width: 1000px) 100vw, 1000px" width="1500" height="1000" alt="Lumen peittämiä tykkypuita Lapin tunturissa auringon laskiessa">
+      </picture>
+      <figcaption>Talvi Lapissa</figcaption>
+    </figure>
+
+    <figure>
+      <picture>
+        <source type="image/webp" srcset="kuvat/mustikka-800.webp 800w, kuvat/mustikka.webp 1600w" sizes="(max-width: 1000px) 100vw, 1000px">
+        <img src="kuvat/mustikka.jpg" srcset="kuvat/mustikka-800.jpg 800w, kuvat/mustikka.jpg 1600w" sizes="(max-width: 1000px) 100vw, 1000px" width="1600" height="1064" alt="Mustikoita varvussa metsän pohjalla" loading="lazy">
+      </picture>
+      <figcaption>Mustikoita metsässä</figcaption>
+    </figure>
+  </main>
+</body>
+</html>
