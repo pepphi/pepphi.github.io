@@ -232,11 +232,10 @@ main > :first-child {
 }
 
 /* Kuvat skaalautuvat näytön mukaan */
+
 img {
   max-width: 100%;
   height: auto;
-  display: block;
-  border-radius: var(--pyoristys-pieni);
 }
 
 figure {
