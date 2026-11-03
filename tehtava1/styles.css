@@ -1,8 +1,7 @@
-
 :root {
   --vihrea: #2f6a52;
   --vihrea-tumma: #26654a;
-  --vihrea-vaalea: #2e6b52;
+  --vihrea-vaalea: #3d8a6a;
   --vaalea: #f4f7f5;
   --teksti: #1a1a1a;
   --teksti-himmea: #4a5550;
@@ -27,6 +26,7 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Footer pysyy alareunassa: body on flex-sarake ja main täyttää tilan */
 body {
   margin: 0;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -56,13 +56,14 @@ p {
 
 /* Tavalliset tekstilinkit */
 a {
-  color: var(--vihrea-vaalea);
+  color: var(--vihrea);
   text-underline-offset: 3px;
   transition: color var(--siirtyma);
 }
 
 a:hover {
-  color: var(--vihrea);
+  color: var(--vihrea-vaalea);
+  text-decoration-thickness: 2px;
 }
 
 /* ===== Saavutettavuus ===== */
@@ -120,6 +121,40 @@ header h1 {
   margin: 0;
   color: white;
   font-size: 1.6rem;
+}
+
+/* Pääotsikon ensimmäinen kirjain isompana ja keltaisena */
+header h1::first-letter {
+  font-size: 1.5em;
+  color: var(--korostus);
+}
+
+/* Logo ja pääotsikko vierekkäin vasemmassa yläkulmassa */
+.brandi {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo {
+  display: block;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+/* Pyöreä logo: sama leveys ja korkeus + border-radius 50 % */
+.logo img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  transition: transform var(--siirtyma);
+}
+
+.logo:hover img {
+  transform: scale(1.05);
 }
 
 nav ul {
@@ -190,6 +225,7 @@ button:hover {
   background-color: var(--korostus-tumma);
   border-color: var(--korostus-tumma);
   color: var(--teksti);
+  text-decoration: none;
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
 }
@@ -230,10 +266,17 @@ main > :first-child {
 }
 
 /* Kuvat skaalautuvat näytön mukaan */
-
 img {
   max-width: 100%;
   height: auto;
+  display: block;
+  border-radius: var(--pyoristys-pieni);
+}
+
+/* Keskitetty kuva */
+.keskikuva {
+  width: 70%;
+  margin: 0 auto;
 }
 
 figure {
@@ -244,6 +287,50 @@ figcaption {
   font-size: 0.95rem;
   color: var(--teksti-himmea);
   margin-top: 8px;
+}
+
+/* ===== Etusivun hero-osio ===== */
+.hero {
+  margin-bottom: 32px;
+}
+
+.hero img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--pyoristys);
+}
+
+.hero-teksti {
+  padding: 20px 4px 0;
+}
+
+.hero-teksti h2 {
+  margin-top: 0;
+  font-size: 1.8rem;
+}
+
+/* ===== Kortit (etusivu) ===== */
+.kortit {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.kortti {
+  padding: 20px;
+  background-color: var(--vaalea);
+  border: 1px solid var(--reuna);
+  border-radius: var(--pyoristys-pieni);
+}
+
+.kortti h3 {
+  margin-top: 0;
+}
+
+.kortti p {
+  margin-bottom: 0;
 }
 
 /* Kaksi saraketta isolla näytöllä */
@@ -315,6 +402,10 @@ footer {
   font-size: 0.95rem;
 }
 
+footer p {
+  margin: 0 auto;
+}
+
 footer a {
   color: var(--korostus);
   font-weight: bold;
@@ -324,12 +415,23 @@ footer a:hover {
   color: white;
 }
 
+/* ===== Responsiivisuus: tabletit ===== */
+@media (max-width: 800px) {
+  .kortit {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ===== Responsiivisuus: puhelimet ja pienet näytöt ===== */
 @media (max-width: 600px) {
   header {
     flex-direction: column;
     align-items: stretch;
     text-align: center;
+  }
+
+  .brandi {
+    justify-content: center;
   }
 
   nav ul {
