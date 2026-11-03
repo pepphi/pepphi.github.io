@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Etusivu – Suomen kansallispuistot</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
+  <a class="skip-link" href="#sisalto">Siirry sisältöön</a>
+
+  <header>
+    <h1>Suomen kansallispuistot</h1>
+    <nav aria-label="Päävalikko">
+      <ul>
+        <li><a href="index.html" aria-current="page">Etusivu</a></li>
+        <li><a href="puistot.html">Puistot</a></li>
+        <li><a href="retkivinkit.html">Retkivinkit</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="sisalto">
+
+    <!-- Iso kuva ja esittelyteksti -->
+    <section class="hero" aria-labelledby="hero-otsikko">
+      <img src="kuvat/metsa.jpg" width="900" height="600"
+           alt="Syksyinen näkymä vaaralta: kellastuneita koivuja ja kuusimetsää, laaksossa sumua ja taivas sininen">
+      <div class="hero-teksti">
+        <h2 id="hero-otsikko">Syksy kutsuu luontoon</h2>
+        <p>Ruska värjää metsät kullankeltaisiksi. Nyt on paras aika lähteä retkelle kansallispuistoon.</p>
+        <a class="nappi" href="puistot.html">Tutustu puistoihin</a>
+      </div>
+    </section>
+
+    <section class="johdanto">
+      <h2>Tervetuloa luontoon</h2>
+      <p>Suomessa on yli 40 kansallispuistoa. Ne suojelevat luontoa ja ovat kaikkien vapaasti käytettävissä.</p>
+    </section>
+
+    <!-- Kolme korttia -->
+    <div class="kortit">
+      <section class="kortti">
+        <h3>Mikä on kansallispuisto?</h3>
+        <p>Suojelualue, jossa luonto saa olla rauhassa. Puistoissa on merkittyjä reittejä ja taukopaikkoja.</p>
+      </section>
+      <section class="kortti">
+        <h3>Miksi lähteä retkelle?</h3>
+        <p>Luonnossa liikkuminen rentouttaa ja on hyvää liikuntaa. Lähin puisto voi olla yllättävän lähellä.</p>
+      </section>
+      <section class="kortti">
+        <h3>Valmistaudu hyvin</h3>
+        <p>Katso pakkauslista ja retkietiketti <a href="retkivinkit.html">retkivinkeistä</a>.</p>
+      </section>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Suomen kansallispuistot – koulutehtävä</p>
+  </footer>
+
+</body>
+</html>

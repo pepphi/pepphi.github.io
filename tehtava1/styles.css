@@ -1,0 +1,365 @@
+/* ===== Yhteinen tyyli kaikille sivuille ===== */
+
+/* Värit, varjot ja pyöristykset yhdessä paikassa – helppo muuttaa */
+:root {
+  --vihrea: #2f6a52;
+  --vihrea-tumma: #26654a;
+  --vihrea-vaalea: #2e6b52;
+  --vaalea: #f4f7f5;
+  --teksti: #1a1a1a;
+  --teksti-himmea: #4a5550;
+  --korostus: #fadfa0;
+  --korostus-tumma: #fecb5b;
+  --reuna: #dae0dd;
+
+  --pyoristys: 12px;
+  --pyoristys-pieni: 8px;
+  --varjo: 0 2px 6px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.06);
+  --varjo-nappi: 0 2px 4px rgba(0, 0, 0, 0.15);
+  --siirtyma: 0.2s ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--teksti);
+  background-color: var(--vaalea);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  color: var(--vihrea);
+}
+
+h2 {
+  margin-top: 1.5em;
+}
+
+p {
+  max-width: 70ch;
+}
+
+/* Tavalliset tekstilinkit */
+a {
+  color: var(--vihrea-vaalea);
+  text-underline-offset: 3px;
+  transition: color var(--siirtyma);
+}
+
+a:hover {
+  color: var(--vihrea);
+}
+
+/* ===== Saavutettavuus ===== */
+
+/* "Siirry sisältöön" -linkki näppäimistön käyttäjille */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 10px;
+  background: var(--korostus);
+  color: var(--teksti);
+  padding: 10px 16px;
+  border-radius: var(--pyoristys-pieni);
+  font-weight: bold;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 10px;
+}
+
+/* Selvästi näkyvä kohdistus näppäimistöllä liikkuessa */
+a:focus-visible,
+button:focus-visible,
+.painike:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--korostus);
+  outline-offset: 3px;
+}
+
+/* Vähennetään animaatioita, jos käyttäjä on pyytänyt sitä */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===== Yläosa ja navigaatio ===== */
+header {
+  background: linear-gradient(135deg, var(--vihrea), var(--vihrea-tumma));
+  color: white;
+  padding: 20px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+header h1 {
+  margin: 0;
+  color: white;
+  font-size: 1.6rem;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Navigaation linkit selkeinä painikkeina */
+nav a {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 18px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.08);
+  transition: background-color var(--siirtyma), color var(--siirtyma),
+    border-color var(--siirtyma), transform var(--siirtyma);
+}
+
+nav a:hover {
+  background-color: white;
+  color: var(--vihrea);
+  border-color: white;
+  transform: translateY(-2px);
+}
+
+/* Sivu, jolla käyttäjä on: täytetty keltainen painike */
+nav a[aria-current="page"] {
+  background-color: var(--korostus);
+  border-color: var(--korostus);
+  color: var(--teksti);
+}
+
+nav a[aria-current="page"]:hover {
+  background-color: var(--korostus-tumma);
+  border-color: var(--korostus-tumma);
+}
+
+/* ===== Yleiset painikkeet =====
+   Käytä esim. <a class="painike" href="...">Lue lisää</a>
+   tai <button class="painike">Lähetä</button> */
+.painike,
+button {
+  display: inline-block;
+  font: inherit;
+  font-weight: bold;
+  color: var(--teksti);
+  background-color: var(--korostus);
+  border: 2px solid var(--korostus);
+  padding: 12px 24px;
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--varjo-nappi);
+  transition: background-color var(--siirtyma), transform var(--siirtyma),
+    box-shadow var(--siirtyma);
+}
+
+.painike:hover,
+button:hover {
+  background-color: var(--korostus-tumma);
+  border-color: var(--korostus-tumma);
+  color: var(--teksti);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+}
+
+.painike:active,
+button:active {
+  transform: translateY(0);
+  box-shadow: var(--varjo-nappi);
+}
+
+/* Toissijainen painike: vihreä reunus */
+.painike-toissijainen {
+  background-color: transparent;
+  color: var(--vihrea);
+  border-color: var(--vihrea);
+  box-shadow: none;
+}
+
+.painike-toissijainen:hover {
+  background-color: var(--vihrea);
+  border-color: var(--vihrea);
+  color: white;
+}
+
+/* ===== Pääsisältö ===== */
+main {
+  flex: 1;
+  width: min(900px, 100% - 32px);
+  margin: 32px auto;
+  padding: 32px;
+  background-color: white;
+  border-radius: var(--pyoristys);
+  box-shadow: var(--varjo);
+}
+
+main > :first-child {
+  margin-top: 0;
+}
+
+/* Kuvat skaalautuvat näytön mukaan */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--pyoristys-pieni);
+}
+
+figure {
+  margin: 0 0 24px;
+}
+
+figcaption {
+  font-size: 0.95rem;
+  color: var(--teksti-himmea);
+  margin-top: 8px;
+}
+
+/* Kaksi saraketta isolla näytöllä */
+.sarakkeet {
+  display: flex;
+  gap: 24px;
+}
+
+.sarakkeet section {
+  flex: 1;
+  padding: 20px;
+  background-color: var(--vaalea);
+  border-radius: var(--pyoristys-pieni);
+  border: 1px solid var(--reuna);
+}
+
+/* ===== Taulukko ===== */
+
+/* Taulukko vierii sivuttain kapealla näytöllä */
+.taulukko-kehys {
+  overflow-x: auto;
+  border-radius: var(--pyoristys-pieni);
+  border: 1px solid var(--reuna);
+  margin-top: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+caption {
+  font-weight: bold;
+  text-align: left;
+  padding: 12px 14px;
+  color: var(--vihrea);
+}
+
+th,
+td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--reuna);
+}
+
+th {
+  background-color: var(--vihrea);
+  color: white;
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--vaalea);
+}
+
+tbody tr:hover {
+  background-color: #e8f0eb;
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ===== Alaosa ===== */
+footer {
+  background-color: var(--vihrea-tumma);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.95rem;
+}
+
+footer a {
+  color: var(--korostus);
+  font-weight: bold;
+}
+
+footer a:hover {
+  color: white;
+}
+
+/* ===== Responsiivisuus: puhelimet ja pienet näytöt ===== */
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Isot, helposti painettavat napit puhelimella */
+  nav a {
+    display: block;
+    text-align: center;
+    padding: 12px;
+  }
+
+  .sarakkeet {
+    flex-direction: column;
+  }
+
+  main {
+    width: calc(100% - 20px);
+    margin: 10px auto;
+    padding: 20px;
+  }
+
+  .painike,
+  button {
+    width: 100%;
+    text-align: center;
+  }
+}
