@@ -2,15 +2,15 @@
 
 /* Värit, varjot ja pyöristykset yhdessä paikassa – helppo muuttaa */
 :root {
-  --vihrea: #2f6a52;
-  --vihrea-tumma: #26654a;
+  --vihrea: #1f4d3a;
+  --vihrea-tumma: #163a2b;
   --vihrea-vaalea: #2e6b52;
   --vaalea: #f4f7f5;
   --teksti: #1a1a1a;
   --teksti-himmea: #4a5550;
-  --korostus: #fadfa0;
-  --korostus-tumma: #fecb5b;
-  --reuna: #dae0dd;
+  --korostus: #ffd166;
+  --korostus-tumma: #f2b93b;
+  --reuna: #dfe6e2;
 
   --pyoristys: 12px;
   --pyoristys-pieni: 8px;
@@ -91,6 +91,7 @@ a:hover {
 a:focus-visible,
 button:focus-visible,
 .painike:focus-visible,
+.nappi:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
@@ -106,7 +107,7 @@ textarea:focus-visible {
   }
 }
 
-/* ===== Yläosa ja navigaatio (muut sivut) ===== */
+/* ===== Yläosa ja navigaatio ===== */
 header {
   background: linear-gradient(135deg, var(--vihrea), var(--vihrea-tumma));
   color: white;
@@ -125,7 +126,7 @@ header h1 {
   font-size: 1.6rem;
 }
 
-/* Yläosa ja logo pysyvät paikoillaan sivua vieritettäessä.
+/* ===== Yläpalkki pysyy paikoillaan ja pyöreä logo =====
    :not(.otsikko) = ei koske Puistot-sivun hero-osiota */
 header:not(.otsikko) {
   position: sticky;
@@ -133,11 +134,32 @@ header:not(.otsikko) {
   z-index: 50;
 }
 
-/* Logokuva (jos käytät <img class="logo">) */
-.logo {
-  height: 48px;
-  width: auto;
+/* Logo ja sivuston nimi samalla rivillä */
+header:not(.otsikko) h1,
+.brandi {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Ympyränmuotoinen logo.
+   Toimii sekä <img class="logo"> että <a class="logo"><img></a> */
+img.logo,
+a.logo img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;        /* tekee kuvasta ympyrän */
+  object-fit: cover;         /* täyttää ympyrän vääristymättä */
+  border: 3px solid white;
+  background-color: white;
+  box-shadow: var(--varjo-nappi);
   flex-shrink: 0;
+}
+
+a.logo {
+  display: block;
+  flex-shrink: 0;
+  border-radius: 50%;
 }
 
 nav ul {
@@ -187,6 +209,7 @@ nav a[aria-current="page"]:hover {
    Käytä esim. <a class="painike" href="...">Lue lisää</a>
    tai <button class="painike">Lähetä</button> */
 .painike,
+.nappi,
 button {
   display: inline-block;
   font: inherit;
@@ -204,6 +227,7 @@ button {
 }
 
 .painike:hover,
+.nappi:hover,
 button:hover {
   background-color: var(--korostus-tumma);
   border-color: var(--korostus-tumma);
@@ -213,6 +237,7 @@ button:hover {
 }
 
 .painike:active,
+.nappi:active,
 button:active {
   transform: translateY(0);
   box-shadow: var(--varjo-nappi);
@@ -232,7 +257,7 @@ button:active {
   color: white;
 }
 
-/* ===== Pääsisältö (muut sivut) ===== */
+/* ===== Pääsisältö ===== */
 main {
   flex: 1;
   width: min(900px, 100% - 32px);
@@ -252,6 +277,7 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+  border-radius: var(--pyoristys-pieni);
 }
 
 figure {
@@ -373,16 +399,39 @@ footer a:hover {
   }
 
   .painike,
+  .nappi,
   button {
     width: 100%;
     text-align: center;
   }
+
+  header:not(.otsikko) h1,
+  .brandi {
+    justify-content: center;
+  }
+
+  header h1 {
+    font-size: 1.3rem;
+  }
+
+  img.logo,
+  a.logo img {
+    width: 44px;
+    height: 44px;
+  }
 }
+
+
+/* =========================================================
+   PUISTOT-SIVUN GRID-ASETTELU (Oura-tyylinen)
+   Nämä säännöt koskevat vain .sivu-rakennetta, joten
+   muiden sivujen ulkoasu pysyy ennallaan.
+   ========================================================= */
 
 /* ---------- Pääosioiden nimet ---------- */
 .navigaatio { grid-area: navigaatio; }
 .otsikko    { grid-area: otsikko; }
-.kortit     { grid-area: kortit; }
+.sivu .kortit { grid-area: kortit; }
 .mainos1    { grid-area: mainos1; }
 .mainos2    { grid-area: mainos2; }
 
@@ -524,7 +573,7 @@ footer a:hover {
 
 /* ---------- Kortit: ei laatikoita, kuva + teksti ---------- */
 /* Nollataan yleiset main-tyylit, jotta grid toimii */
-.kortit {
+.sivu .kortit {
   width: auto;
   margin: 0;
   padding: 0;
@@ -533,7 +582,7 @@ footer a:hover {
   box-shadow: none;
 }
 
-.kortti {
+.sivu .kortti {
   overflow: hidden;
 }
 
@@ -546,16 +595,16 @@ footer a:hover {
   transition: transform 0.4s ease;
 }
 
-.kortti:hover .korttikuva {
+.sivu .kortti:hover .korttikuva {
   transform: scale(1.03);
 }
 
-.kortti h3 {
+.sivu .kortti h3 {
   font-size: 1.15rem;
   margin-top: 0.9rem;
 }
 
-.kortti p {
+.sivu .kortti p {
   color: var(--teksti-himmea);
   font-size: 0.9rem;
   margin: 0.2rem 0 0;
@@ -589,7 +638,7 @@ footer a:hover {
     "mainos2";
 }
 
-.kortit {
+.sivu .kortit {
   display: grid;
   gap: 2rem;
   grid-template-columns: 1fr;
@@ -630,7 +679,7 @@ footer a:hover {
   .otsikko h1 { font-size: 3rem; }
   .otsikko figure img { height: 380px; }
 
-  .kortit {
+  .sivu .kortit {
     gap: 2.5rem 1.5rem;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
@@ -677,7 +726,7 @@ footer a:hover {
   .otsikko h1 { font-size: 4.2rem; }
   .otsikko figure img { height: 480px; }
 
-  .kortit {
+  .sivu .kortit {
     gap: 3rem 1.5rem;
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas:
