@@ -1,32 +1,35 @@
+/* ===== Yhteinen tyyli kaikille sivuille ===== */
+ 
+/* Värit, varjot ja pyöristykset yhdessä paikassa – helppo muuttaa */
 :root {
   --vihrea: #2f6a52;
   --vihrea-tumma: #26654a;
-  --vihrea-vaalea: #3d8a6a;
+  --vihrea-vaalea: #2e6b52;
   --vaalea: #f4f7f5;
   --teksti: #1a1a1a;
   --teksti-himmea: #4a5550;
   --korostus: #fadfa0;
   --korostus-tumma: #fecb5b;
   --reuna: #dae0dd;
-
+ 
   --pyoristys: 12px;
   --pyoristys-pieni: 8px;
+  --pyoristys-iso: 20px;
   --varjo: 0 2px 6px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.06);
   --varjo-nappi: 0 2px 4px rgba(0, 0, 0, 0.15);
   --siirtyma: 0.2s ease;
 }
-
+ 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
-
+ 
 html {
   scroll-behavior: smooth;
 }
-
-/* Footer pysyy alareunassa: body on flex-sarake ja main täyttää tilan */
+ 
 body {
   margin: 0;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -38,36 +41,35 @@ body {
   display: flex;
   flex-direction: column;
 }
-
+ 
 h1,
 h2,
 h3 {
   line-height: 1.25;
   color: var(--vihrea);
 }
-
+ 
 h2 {
   margin-top: 1.5em;
 }
-
+ 
 p {
   max-width: 70ch;
 }
-
+ 
 /* Tavalliset tekstilinkit */
 a {
-  color: var(--vihrea);
+  color: var(--vihrea-vaalea);
   text-underline-offset: 3px;
   transition: color var(--siirtyma);
 }
-
+ 
 a:hover {
-  color: var(--vihrea-vaalea);
-  text-decoration-thickness: 2px;
+  color: var(--vihrea);
 }
-
+ 
 /* ===== Saavutettavuus ===== */
-
+ 
 /* "Siirry sisältöön" -linkki näppäimistön käyttäjille */
 .skip-link {
   position: absolute;
@@ -80,11 +82,11 @@ a:hover {
   font-weight: bold;
   z-index: 100;
 }
-
+ 
 .skip-link:focus {
   left: 10px;
 }
-
+ 
 /* Selvästi näkyvä kohdistus näppäimistöllä liikkuessa */
 a:focus-visible,
 button:focus-visible,
@@ -95,7 +97,7 @@ textarea:focus-visible {
   outline: 3px solid var(--korostus);
   outline-offset: 3px;
 }
-
+ 
 /* Vähennetään animaatioita, jos käyttäjä on pyytänyt sitä */
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -103,8 +105,8 @@ textarea:focus-visible {
     scroll-behavior: auto !important;
   }
 }
-
-/* ===== Yläosa ja navigaatio ===== */
+ 
+/* ===== Yläosa ja navigaatio (muut sivut) ===== */
 header {
   background: linear-gradient(135deg, var(--vihrea), var(--vihrea-tumma));
   color: white;
@@ -116,47 +118,13 @@ header {
   gap: 16px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
-
+ 
 header h1 {
   margin: 0;
   color: white;
   font-size: 1.6rem;
 }
-
-/* Pääotsikon ensimmäinen kirjain isompana ja keltaisena */
-header h1::first-letter {
-  font-size: 1.5em;
-  color: var(--korostus);
-}
-
-/* Logo ja pääotsikko vierekkäin vasemmassa yläkulmassa */
-.brandi {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.logo {
-  display: block;
-  flex-shrink: 0;
-  border-radius: 50%;
-}
-
-/* Pyöreä logo: sama leveys ja korkeus + border-radius 50 % */
-.logo img {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  transition: transform var(--siirtyma);
-}
-
-.logo:hover img {
-  transform: scale(1.05);
-}
-
+ 
 nav ul {
   list-style: none;
   margin: 0;
@@ -166,7 +134,7 @@ nav ul {
   justify-content: flex-end;
   gap: 10px;
 }
-
+ 
 /* Navigaation linkit selkeinä painikkeina */
 nav a {
   display: inline-block;
@@ -180,26 +148,26 @@ nav a {
   transition: background-color var(--siirtyma), color var(--siirtyma),
     border-color var(--siirtyma), transform var(--siirtyma);
 }
-
+ 
 nav a:hover {
   background-color: white;
   color: var(--vihrea);
   border-color: white;
   transform: translateY(-2px);
 }
-
+ 
 /* Sivu, jolla käyttäjä on: täytetty keltainen painike */
 nav a[aria-current="page"] {
   background-color: var(--korostus);
   border-color: var(--korostus);
   color: var(--teksti);
 }
-
+ 
 nav a[aria-current="page"]:hover {
   background-color: var(--korostus-tumma);
   border-color: var(--korostus-tumma);
 }
-
+ 
 /* ===== Yleiset painikkeet =====
    Käytä esim. <a class="painike" href="...">Lue lisää</a>
    tai <button class="painike">Lähetä</button> */
@@ -219,23 +187,22 @@ button {
   transition: background-color var(--siirtyma), transform var(--siirtyma),
     box-shadow var(--siirtyma);
 }
-
+ 
 .painike:hover,
 button:hover {
   background-color: var(--korostus-tumma);
   border-color: var(--korostus-tumma);
   color: var(--teksti);
-  text-decoration: none;
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
 }
-
+ 
 .painike:active,
 button:active {
   transform: translateY(0);
   box-shadow: var(--varjo-nappi);
 }
-
+ 
 /* Toissijainen painike: vihreä reunus */
 .painike-toissijainen {
   background-color: transparent;
@@ -243,14 +210,14 @@ button:active {
   border-color: var(--vihrea);
   box-shadow: none;
 }
-
+ 
 .painike-toissijainen:hover {
   background-color: var(--vihrea);
   border-color: var(--vihrea);
   color: white;
 }
-
-/* ===== Pääsisältö ===== */
+ 
+/* ===== Pääsisältö (muut sivut) ===== */
 main {
   flex: 1;
   width: min(900px, 100% - 32px);
@@ -260,85 +227,34 @@ main {
   border-radius: var(--pyoristys);
   box-shadow: var(--varjo);
 }
-
+ 
 main > :first-child {
   margin-top: 0;
 }
-
+ 
 /* Kuvat skaalautuvat näytön mukaan */
 img {
   max-width: 100%;
   height: auto;
   display: block;
-  border-radius: var(--pyoristys-pieni);
 }
-
-/* Keskitetty kuva */
-.keskikuva {
-  width: 70%;
-  margin: 0 auto;
-}
-
+ 
 figure {
   margin: 0 0 24px;
 }
-
+ 
 figcaption {
   font-size: 0.95rem;
   color: var(--teksti-himmea);
   margin-top: 8px;
 }
-
-/* ===== Etusivun hero-osio ===== */
-.hero {
-  margin-bottom: 32px;
-}
-
-.hero img {
-  width: 100%;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-  border-radius: var(--pyoristys);
-}
-
-.hero-teksti {
-  padding: 20px 4px 0;
-}
-
-.hero-teksti h2 {
-  margin-top: 0;
-  font-size: 1.8rem;
-}
-
-/* ===== Kortit (etusivu) ===== */
-.kortit {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 24px;
-}
-
-.kortti {
-  padding: 20px;
-  background-color: var(--vaalea);
-  border: 1px solid var(--reuna);
-  border-radius: var(--pyoristys-pieni);
-}
-
-.kortti h3 {
-  margin-top: 0;
-}
-
-.kortti p {
-  margin-bottom: 0;
-}
-
+ 
 /* Kaksi saraketta isolla näytöllä */
 .sarakkeet {
   display: flex;
   gap: 24px;
 }
-
+ 
 .sarakkeet section {
   flex: 1;
   padding: 20px;
@@ -346,9 +262,9 @@ figcaption {
   border-radius: var(--pyoristys-pieni);
   border: 1px solid var(--reuna);
 }
-
+ 
 /* ===== Taulukko ===== */
-
+ 
 /* Taulukko vierii sivuttain kapealla näytöllä */
 .taulukko-kehys {
   overflow-x: auto;
@@ -356,43 +272,43 @@ figcaption {
   border: 1px solid var(--reuna);
   margin-top: 10px;
 }
-
+ 
 table {
   width: 100%;
   border-collapse: collapse;
 }
-
+ 
 caption {
   font-weight: bold;
   text-align: left;
   padding: 12px 14px;
   color: var(--vihrea);
 }
-
+ 
 th,
 td {
   padding: 12px 14px;
   text-align: left;
   border-bottom: 1px solid var(--reuna);
 }
-
+ 
 th {
   background-color: var(--vihrea);
   color: white;
 }
-
+ 
 tbody tr:nth-child(even) {
   background-color: var(--vaalea);
 }
-
+ 
 tbody tr:hover {
   background-color: #e8f0eb;
 }
-
+ 
 tbody tr:last-child td {
   border-bottom: none;
 }
-
+ 
 /* ===== Alaosa ===== */
 footer {
   background-color: var(--vihrea-tumma);
@@ -401,27 +317,16 @@ footer {
   padding: 20px;
   font-size: 0.95rem;
 }
-
-footer p {
-  margin: 0 auto;
-}
-
+ 
 footer a {
   color: var(--korostus);
   font-weight: bold;
 }
-
+ 
 footer a:hover {
   color: white;
 }
-
-/* ===== Responsiivisuus: tabletit ===== */
-@media (max-width: 800px) {
-  .kortit {
-    grid-template-columns: 1fr;
-  }
-}
-
+ 
 /* ===== Responsiivisuus: puhelimet ja pienet näytöt ===== */
 @media (max-width: 600px) {
   header {
@@ -429,36 +334,350 @@ footer a:hover {
     align-items: stretch;
     text-align: center;
   }
-
-  .brandi {
-    justify-content: center;
-  }
-
+ 
   nav ul {
     flex-direction: column;
     gap: 8px;
   }
-
+ 
   /* Isot, helposti painettavat napit puhelimella */
   nav a {
     display: block;
     text-align: center;
     padding: 12px;
   }
-
+ 
   .sarakkeet {
     flex-direction: column;
   }
-
+ 
   main {
     width: calc(100% - 20px);
     margin: 10px auto;
     padding: 20px;
   }
-
+ 
   .painike,
   button {
     width: 100%;
     text-align: center;
   }
+}
+ 
+ 
+/* =========================================================
+   PUISTOT-SIVUN GRID-ASETTELU (Oura-tyylinen)
+   Nämä säännöt koskevat vain .sivu-rakennetta, joten
+   muiden sivujen ulkoasu pysyy ennallaan.
+   ========================================================= */
+ 
+/* ---------- Pääosioiden nimet ---------- */
+.navigaatio { grid-area: navigaatio; }
+.otsikko    { grid-area: otsikko; }
+.kortit     { grid-area: kortit; }
+.mainos1    { grid-area: mainos1; }
+.mainos2    { grid-area: mainos2; }
+ 
+/* ---------- Korttien nimet ---------- */
+.kortti1  { grid-area: kortti1; }
+.kortti2  { grid-area: kortti2; }
+.kortti3  { grid-area: kortti3; }
+.kortti4  { grid-area: kortti4; }
+.kortti5  { grid-area: kortti5; }
+.kortti6  { grid-area: kortti6; }
+.kortti7  { grid-area: kortti7; }
+.kortti8  { grid-area: kortti8; }
+.kortti9  { grid-area: kortti9; }
+.kortti10 { grid-area: kortti10; }
+.kortti11 { grid-area: kortti11; }
+.kortti12 { grid-area: kortti12; }
+ 
+/* ---------- Kevyt, ilmava typografia ---------- */
+.sivu {
+  flex: 1;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+ 
+.sivu h1,
+.sivu h2,
+.sivu h3 {
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+ 
+/* ---------- Navigaatio: kevyt palkki, pillerilinkit ---------- */
+.navigaatio {
+  background: white;
+  border-radius: var(--pyoristys-iso);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 6px;
+}
+ 
+.navigaatio a {
+  display: inline-block;
+  color: var(--teksti);
+  font-weight: 400;
+  text-align: left;
+  font-size: 13px;          /* pieni fontti mobiilissa */
+  padding: 6px 10px;        /* pieni padding mobiilissa */
+  border: none;
+  border-radius: 999px;
+  background: none;
+  letter-spacing: 0.02em;
+}
+ 
+.navigaatio a:hover,
+.navigaatio a:focus {
+  background: var(--vaalea);
+  color: var(--vihrea);
+  transform: none;
+}
+ 
+/* Aktiivinen sivu: keltainen korostus kuten muillakin sivuilla */
+.navigaatio a[aria-current="page"] {
+  background: var(--korostus);
+  color: var(--teksti);
+}
+ 
+.navigaatio a[aria-current="page"]:hover {
+  background: var(--korostus-tumma);
+}
+ 
+.navigaatio .fa {
+  width: 1.3em;
+  color: var(--vihrea);
+}
+ 
+/* ---------- Otsikko: iso "hero"-osio ---------- */
+.otsikko {
+  display: block;
+  background: white;
+  color: var(--teksti);
+  box-shadow: none;
+  border-radius: var(--pyoristys-iso);
+  padding: 2rem 1.25rem;
+  text-align: center;
+}
+ 
+.otsikko h1 {
+  color: var(--vihrea);
+  font-size: 2.2rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+ 
+.otsikko figure {
+  margin: 0 0 2rem;
+}
+ 
+.otsikko figure img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: var(--pyoristys);
+}
+ 
+.otsikko h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+ 
+.otsikko p {
+  color: var(--teksti-himmea);
+  max-width: 40ch;
+  margin: 0 auto 2rem;
+}
+ 
+/* Taulukko hero-osiossa: kevyempi ilme */
+.otsikko .taulukko-kehys {
+  border: none;
+  text-align: left;
+}
+ 
+.otsikko caption {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+ 
+.otsikko th {
+  background: none;
+  color: var(--teksti-himmea);
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+ 
+/* ---------- Kortit: ei laatikoita, kuva + teksti ---------- */
+/* Nollataan yleiset main-tyylit, jotta grid toimii */
+.kortit {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+ 
+.kortti {
+  overflow: hidden;
+}
+ 
+.korttikuva {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;          /* täyttää alueen vääristymättä */
+  object-position: 20% 30%;   /* kohdistus */
+  border-radius: var(--pyoristys);
+  transition: transform 0.4s ease;
+}
+ 
+.kortti:hover .korttikuva {
+  transform: scale(1.03);
+}
+ 
+.kortti h3 {
+  font-size: 1.15rem;
+  margin-top: 0.9rem;
+}
+ 
+.kortti p {
+  color: var(--teksti-himmea);
+  font-size: 0.9rem;
+  margin: 0.2rem 0 0;
+}
+ 
+/* ---------- Mainokset: isot pyöristetyt kuvat ---------- */
+.mainos {
+  background: var(--vihrea);
+  border-radius: var(--pyoristys-iso);
+  overflow: hidden;
+  min-height: 180px;
+}
+ 
+.mainos img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+ 
+/* ---------- Mobiili (alle 600px): kaikki allekkain ---------- */
+.sivu {
+  display: grid;
+  gap: 2rem;
+  padding: 12px;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "navigaatio"
+    "otsikko"
+    "kortit"
+    "mainos1"
+    "mainos2";
+}
+ 
+.kortit {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "kortti1" "kortti2" "kortti3" "kortti4"
+    "kortti5" "kortti6" "kortti7" "kortti8"
+    "kortti9" "kortti10" "kortti11" "kortti12";
+}
+ 
+/* ---------- Tabletti (600px–900px) ---------- */
+@media (min-width: 600px) {
+  .sivu {
+    gap: 3rem 1.5rem;
+    padding: 20px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "navigaatio navigaatio"
+      "otsikko otsikko"
+      "kortit kortit"
+      "mainos1 mainos2";
+  }
+ 
+  .navigaatio {
+    position: sticky;
+    top: 10px;
+    z-index: 10;
+    justify-content: center;
+    padding: 8px;
+    box-shadow: var(--varjo);
+  }
+ 
+  .navigaatio a {
+    font-size: 15px;
+    padding: 8px 16px;
+  }
+ 
+  .otsikko { padding: 3.5rem 2.5rem; }
+  .otsikko h1 { font-size: 3rem; }
+  .otsikko figure img { height: 380px; }
+ 
+  .kortit {
+    gap: 2.5rem 1.5rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "kortti1 kortti2"
+      "kortti3 kortti4"
+      "kortti5 kortti6"
+      "kortti7 kortti8"
+      "kortti9 kortti10"
+      "kortti11 kortti12";
+  }
+ 
+  .mainos { min-height: 240px; }
+}
+ 
+/* ---------- Iso näyttö (yli 900px): sivupalkki vasemmalla ---------- */
+@media (min-width: 900px) {
+  .sivu {
+    gap: 4rem 2rem;
+    padding: 20px 40px 40px 20px;
+    grid-template-columns: 220px 1fr 1fr;
+    grid-template-areas:
+      "navigaatio otsikko otsikko"
+      "navigaatio kortit kortit"
+      "navigaatio mainos1 mainos2";
+  }
+ 
+  /* Pysyvä sivupalkki */
+  .navigaatio {
+    position: sticky;
+    top: 20px;
+    align-self: start;
+    flex-direction: column;
+    gap: 4px;
+    padding: 24px 12px;
+  }
+ 
+  .navigaatio a {
+    display: block;
+    font-size: 16px;
+    padding: 12px 18px;
+  }
+ 
+  .otsikko { padding: 5rem 4rem; }
+  .otsikko h1 { font-size: 4.2rem; }
+  .otsikko figure img { height: 480px; }
+ 
+  .kortit {
+    gap: 3rem 1.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+      "kortti1 kortti2 kortti3 kortti4"
+      "kortti5 kortti6 kortti7 kortti8"
+      "kortti9 kortti10 kortti11 kortti12";
+  }
+ 
+  .korttikuva { height: 300px; }
+  .mainos { min-height: 320px; }
 }
