@@ -496,6 +496,7 @@ main > .kortit .kortti h3 {
   }
 }
 
+
 /* =========================================================
    PUISTOT-SIVUN GRID-ASETTELU.
    ========================================================= */
@@ -811,6 +812,11 @@ main > .kortit .kortti h3 {
   .mainos { min-height: 320px; }
 }
 
+
+/* =========================================================
+   CSS-ANIMAATIOT.
+   ========================================================= */
+
 /* ---------- Avainkehykset ---------- */
 
 /* Liuku alhaalta ylös ja ilmesty näkyviin */
@@ -991,4 +997,61 @@ header nav a {
 
 header nav a:hover {
   background-size: 70% 3px;
+}
+
+
+/* ---------- A. Headerin kuva-teksti-animaatio ---------- */
+
+/* Logo pyörähtää ja kasvaa näkyviin */
+@keyframes logo-sisaan {
+  from {
+    opacity: 0;
+    transform: scale(0.3) rotate(-180deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* Otsikkoteksti liukuu oikealta logon viereen */
+@keyframes teksti-sisaan {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+    letter-spacing: 0.2em;
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    letter-spacing: normal;
+  }
+}
+
+img.logo,
+a.logo img {
+  animation: logo-sisaan 0.9s ease-out backwards;
+}
+
+.brandi h1 {
+  animation: teksti-sisaan 0.9s ease-out 0.4s backwards;
+}
+
+
+/* ---------- C. Section-osioiden kuvat ---------- */
+
+/* Etusivun hero-kuva zoomaa hitaasti */
+.hero img {
+  animation: hidas-zoom 15s ease-in-out infinite alternate;
+}
+
+/* Muiden sivujen kuvat: mustavalkoisesta väreihin hoverissa */
+main figure img {
+  filter: grayscale(60%);
+  transition: filter 0.6s ease, transform 0.6s ease;
+}
+
+main figure img:hover {
+  filter: grayscale(0%);
+  transform: scale(1.02);
 }
