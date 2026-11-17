@@ -3,85 +3,120 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Suosittuja Suomen kansallispuistoja, kuten Nuuksio, Koli, Oulanka ja Pallas-Yllästunturi, sekä niiden maakunnat ja tunnetuimmat piirteet.">
-<title>Puistot – Suomen kansallispuistot</title>
+  <title>Puistot – Suomen kansallispuistot</title>
+  <!-- Font Awesome 4.7 (sama kuin w3schoolsin esimerkissä) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <a class="skip-link" href="#sisalto">Siirry sisältöön</a>
 
-  <header>
-    <div class="brandi">
-      <a href="index.html" class="logo">
-        <img src="kansallispuistologo.jpg" alt="Suomen kansallispuistot – etusivulle">
-      </a>
-      <h1>Suomen kansallispuistot</h1>
-    </div>
-    <nav aria-label="Päävalikko">
-      <ul>
-        <li><a href="index.html">Etusivu</a></li>
-        <li><a href="puistot.html" aria-current="page">Puistot</a></li>
-        <li><a href="retkivinkit.html">Retkivinkit</a></li>
-      </ul>
+  <div class="sivu">
+
+    <!-- 1. navigaatio -->
+    <nav class="navigaatio" aria-label="Päävalikko">
+      <a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Etusivu</a>
+      <a href="puistot.html" aria-current="page"><i class="fa fa-tree" aria-hidden="true"></i> Puistot</a>
+      <a href="retkivinkit.html"><i class="fa fa-map" aria-hidden="true"></i> Retkivinkit</a>
+      <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> Kartta</a>
+      <a href="#"><i class="fa fa-cloud" aria-hidden="true"></i> Sää</a>
+      <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i> Yhteystiedot</a>
     </nav>
-  </header>
 
-  <main id="sisalto">
-    <figure>
-      <img src="poro.jpg" alt="Poro seisoo luonnossa">
-    </figure>
+    <!-- 2. otsikko -->
+    <header class="otsikko">
+      <h1>Suomen kansallispuistot</h1>
 
-    <h2>Tunnettuja kansallispuistoja</h2>
-    <p>Alla olevaan taulukkoon on koottu muutama suosittu kansallispuisto.</p>
+      <figure>
+        <img src="poro.jpg" alt="poro">
+      </figure>
 
-   <div class="taulukko-kehys">
-  <table>
-    <caption>Suosittuja kansallispuistoja Suomessa</caption>
-    <thead>
-      <tr>
-        <th scope="col">Puisto</th>
-        <th scope="col">Maakunta</th>
-        <th scope="col">Tunnettu</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Nuuksio</td>
-        <td>Uusimaa</td>
-        <td>Lähellä pääkaupunkiseutua</td>
-      </tr>
-      <tr>
-        <td>Pallas-Yllästunturi</td>
-        <td>Lappi</td>
-        <td>Tunturit ja pitkät vaellusreitit</td>
-      </tr>
-      <tr>
-        <td>Koli</td>
-        <td>Pohjois-Karjala</td>
-        <td>Kansallismaisema Pielisen yllä</td>
-      </tr>
-      <tr>
-        <td>Oulanka</td>
-        <td>Pohjois-Pohjanmaa ja Lappi</td>
-        <td>Karhunkierros-reitti</td>
-      </tr>
-      <tr>
-        <td>Lemmenjoki</td>
-        <td>Lappi</td>
-        <td rowspan="2">Lapin erämaat ja tunturit</td>
-      </tr>
-      <tr>
-        <td colspan="2">Urho Kekkonen,Lappi</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </main>
+      <h2>Tunnettuja kansallispuistoja</h2>
+      <p>Alla olevaan taulukkoon on koottu muutama suosittu kansallispuisto.</p>
+
+      <div class="taulukko-kehys">
+        <table>
+          <caption>Suosittuja kansallispuistoja Suomessa</caption>
+          <thead>
+            <tr>
+              <th scope="col">Puisto</th>
+              <th scope="col">Maakunta</th>
+              <th scope="col">Tunnettu</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Nuuksio</td><td>Uusimaa</td><td>Lähellä pääkaupunkiseutua</td></tr>
+            <tr><td>Pallas-Yllästunturi</td><td>Lappi</td><td>Tunturit ja pitkät vaellusreitit</td></tr>
+            <tr><td>Koli</td><td>Pohjois-Karjala</td><td>Kansallismaisema Pielisen yllä</td></tr>
+            <tr><td>Oulanka</td><td>Pohjois-Pohjanmaa ja Lappi</td><td>Karhunkierros-reitti</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </header>
+
+    <!-- 3. kortit -->
+    <main id="sisalto" class="kortit">
+      <article class="kortti kortti1">
+        <img src="nuuksio.WEBP" class="korttikuva" alt="Metsäjärvi Nuuksiossa">
+        <h3>Nuuksio</h3><p>Metsää ja järviä lähellä Helsinkiä.</p>
+      </article>
+      <article class="kortti kortti2">
+        <img src="pallas.JPG" class="korttikuva" alt="Pallastunturit">
+        <h3>Pallas-Yllästunturi</h3><p>Tunturit ja pitkät vaellusreitit.</p>
+      </article>
+      <article class="kortti kortti3">
+        <img src="koli.JPG" class="korttikuva" alt="Näkymä Kolilta Pieliselle">
+        <h3>Koli</h3><p>Kansallismaisema Pielisen yllä.</p>
+      </article>
+      <article class="kortti kortti4">
+        <img src="oulanka.WEBP" class="korttikuva" alt="Koski Oulangalla">
+        <h3>Oulanka</h3><p>Karhunkierros ja koskimaisemat.</p>
+      </article>
+      <article class="kortti kortti5">
+        <img src="urhokekkonen.JPG" class="korttikuva" alt="Tunturimaisema Urho Kekkosen kansallispuistossa">
+        <h3>Urho Kekkonen</h3><p>Laajat erämaat ja tunturit.</p>
+      </article>
+      <article class="kortti kortti6">
+        <img src="lemmenjoki.JPG" class="korttikuva" alt="Lemmenjoki">
+        <h3>Lemmenjoki</h3><p>Suomen suurin kansallispuisto.</p>
+      </article>
+      <article class="kortti kortti7">
+        <img src="repovesi.JPG" class="korttikuva" alt="Lapinsalmen riippusilta">
+        <h3>Repovesi</h3><p>Lapinsalmen riippusilta.</p>
+      </article>
+      <article class="kortti kortti8">
+        <img src="saimaa.JPG" class="korttikuva" alt="Saimaan saaristoa">
+        <h3>Linnansaari</h3><p>Saimaan saaristo ja norpat.</p>
+      </article>
+      <article class="kortti kortti9">
+        <img src="saaristomeri.jpg" class="korttikuva" alt="Saaria Saaristomerellä">
+        <h3>Saaristomeri</h3><p>Tuhansia saaria ja luotoja.</p>
+      </article>
+      <article class="kortti kortti10">
+        <img src="riisitunturi.JPG" class="korttikuva" alt="Tykkylumisia puita">
+        <h3>Riisitunturi</h3><p>Talven tykkylumimaisemat.</p>
+      </article>
+      <article class="kortti kortti11">
+        <img src="seitseminen.JPG" class="korttikuva" alt="Vanhaa metsää">
+        <h3>Seitseminen</h3><p>Vanhoja metsiä Pirkanmaalla.</p>
+      </article>
+      <article class="kortti kortti12">
+        <img src="hossa.JPG" class="korttikuva" alt="Kirkasvetinen järvi Hossassa">
+        <h3>Hossa</h3><p>Kirkkaat vedet ja kalliomaalaukset.</p>
+      </article>
+    </main>
+
+    <!-- 4. mainokset -->
+    <aside class="mainos mainos1" aria-label="Mainos">
+      <img src="mainos.jpg" alt="Mainos 1">
+    </aside>
+    <aside class="mainos mainos2" aria-label="Mainos">
+      <img src="mainosvideo.mp4" alt="Mainos 2">
+    </aside>
+
+  </div>
+
   <footer>
     <p>&copy; 2026 Suomen kansallispuistot – koulutehtävä</p>
   </footer>
