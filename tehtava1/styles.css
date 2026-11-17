@@ -103,6 +103,7 @@ textarea:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
+    animation: none !important;
     scroll-behavior: auto !important;
   }
 }
@@ -368,6 +369,63 @@ footer a:hover {
   color: white;
 }
 
+/* ===== Etusivu: hero, johdanto ja kortit ===== */
+
+/* Iso kuva, jonka päällä teksti */
+.hero {
+  position: relative;
+  border-radius: var(--pyoristys);
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.hero img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 0;
+}
+
+.hero-teksti {
+  position: absolute;
+  inset: auto 0 0 0;          /* kuvan alareunaan */
+  padding: 32px;
+  color: white;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
+}
+
+.hero-teksti h2 {
+  color: white;
+  margin: 0 0 8px;
+  font-size: 2rem;
+}
+
+.hero-teksti p {
+  margin: 0 0 16px;
+}
+
+.johdanto {
+  margin-bottom: 24px;
+}
+
+/* Etusivun kolme korttia rinnakkain, kapealla allekkain */
+main > .kortit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+main > .kortit .kortti {
+  padding: 20px;
+  background-color: var(--vaalea);
+  border: 1px solid var(--reuna);
+  border-radius: var(--pyoristys-pieni);
+}
+
+main > .kortit .kortti h3 {
+  margin-top: 0;
+}
+
 /* ===== Responsiivisuus: puhelimet ja pienet näytöt ===== */
 @media (max-width: 600px) {
   header {
@@ -414,6 +472,23 @@ footer a:hover {
     font-size: 1.3rem;
   }
 
+  /* Hero: teksti kuvan alle, ettei se peitä koko kuvaa */
+  .hero img {
+    height: 240px;
+  }
+
+  .hero-teksti {
+    position: static;
+    padding: 20px;
+    color: var(--teksti);
+    background: var(--vaalea);
+  }
+
+  .hero-teksti h2 {
+    color: var(--vihrea);
+    font-size: 1.5rem;
+  }
+
   img.logo,
   a.logo img {
     width: 44px;
@@ -421,11 +496,8 @@ footer a:hover {
   }
 }
 
-
 /* =========================================================
-   PUISTOT-SIVUN GRID-ASETTELU (Oura-tyylinen)
-   Nämä säännöt koskevat vain .sivu-rakennetta, joten
-   muiden sivujen ulkoasu pysyy ennallaan.
+   PUISTOT-SIVUN GRID-ASETTELU.
    ========================================================= */
 
 /* ---------- Pääosioiden nimet ---------- */
@@ -737,4 +809,186 @@ footer a:hover {
 
   .korttikuva { height: 300px; }
   .mainos { min-height: 320px; }
+}
+
+/* ---------- Avainkehykset ---------- */
+
+/* Liuku alhaalta ylös ja ilmesty näkyviin */
+@keyframes nousu {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pelkkä häivytys näkyviin */
+@keyframes haivytys {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Liuku vasemmalta (navigaatio) */
+@keyframes liuku-vasemmalta {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Napin "sykkivä" hehku */
+@keyframes syke {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 209, 102, 0.7); }
+  50%      { box-shadow: 0 0 0 12px rgba(255, 209, 102, 0); }
+}
+
+/* Ikonin heilahdus */
+@keyframes heilahdus {
+  0%, 100% { transform: rotate(0deg); }
+  25%      { transform: rotate(-15deg); }
+  75%      { transform: rotate(15deg); }
+}
+
+/* Hidas zoomaus mainoskuviin ("Ken Burns" -efekti) */
+@keyframes hidas-zoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.12); }
+}
+
+/* Logon pyörähdys */
+@keyframes pyorahdys {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+
+/* ---------- 1. Sivun latautuessa ---------- */
+
+/* Yläpalkki ja logo */
+header:not(.otsikko) {
+  animation: haivytys 0.6s ease-out backwards;
+}
+
+/* Puistot-sivun navigaatio liukuu vasemmalta */
+.navigaatio {
+  animation: liuku-vasemmalta 0.6s ease-out backwards;
+}
+
+/* Otsikko-osio ja etusivun hero nousevat alhaalta */
+.otsikko,
+.hero,
+.johdanto {
+  animation: nousu 0.8s ease-out backwards;
+}
+
+.johdanto {
+  animation-delay: 0.2s;
+}
+
+
+/* ---------- 2. Kortit ilmestyvät vuorotellen ---------- */
+.sivu .kortti,
+main > .kortit .kortti {
+  animation: nousu 0.6s ease-out backwards;
+}
+
+/* Jokainen kortti alkaa hieman edellistä myöhemmin */
+.kortti1,  main > .kortit .kortti:nth-child(1) { animation-delay: 0.30s; }
+.kortti2,  main > .kortit .kortti:nth-child(2) { animation-delay: 0.40s; }
+.kortti3,  main > .kortit .kortti:nth-child(3) { animation-delay: 0.50s; }
+.kortti4  { animation-delay: 0.60s; }
+.kortti5  { animation-delay: 0.70s; }
+.kortti6  { animation-delay: 0.80s; }
+.kortti7  { animation-delay: 0.90s; }
+.kortti8  { animation-delay: 1.00s; }
+.kortti9  { animation-delay: 1.10s; }
+.kortti10 { animation-delay: 1.20s; }
+.kortti11 { animation-delay: 1.30s; }
+.kortti12 { animation-delay: 1.40s; }
+
+
+/* ---------- 3. Hover-efektit korteissa ---------- */
+.sivu .kortti,
+main > .kortit .kortti {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sivu .kortti:hover,
+main > .kortit .kortti:hover {
+  transform: translateY(-6px);       /* kortti nousee */
+}
+
+main > .kortit .kortti:hover {
+  box-shadow: var(--varjo);
+}
+
+/* Otsikon väri vaihtuu pehmeästi */
+.kortti h3 {
+  transition: color 0.3s ease;
+}
+
+.kortti:hover h3 {
+  color: var(--vihrea-vaalea);
+}
+
+
+/* ---------- 4. Navigaation ikonit heilahtavat ---------- */
+.navigaatio .fa {
+  display: inline-block;             /* transform toimii vain blokille */
+}
+
+.navigaatio a:hover .fa,
+.navigaatio a:focus .fa {
+  animation: heilahdus 0.5s ease-in-out;
+}
+
+
+/* ---------- 5. Logo pyörähtää hoverissa ---------- */
+img.logo,
+a.logo img {
+  transition: transform 0.6s ease;
+}
+
+header:not(.otsikko) h1:hover img.logo,
+a.logo:hover img,
+a.logo:focus img {
+  animation: pyorahdys 0.8s ease-in-out;
+}
+
+
+/* ---------- 6. Nappi sykkii kevyesti ---------- */
+.nappi {
+  animation: syke 2.5s ease-in-out infinite;
+}
+
+.nappi:hover {
+  animation-play-state: paused;      /* syke pysähtyy hoverissa */
+}
+
+
+/* ---------- 7. Mainoskuvat zoomaavat hitaasti ---------- */
+.mainos img {
+  animation: hidas-zoom 12s ease-in-out infinite alternate;
+}
+
+
+/* ---------- 8. Navigaatiolinkin alleviivaus kasvaa (muut sivut) ---------- */
+header nav a {
+  background-image: linear-gradient(var(--korostus), var(--korostus));
+  background-size: 0% 3px;
+  background-repeat: no-repeat;
+  background-position: 50% 100%;
+  transition: background-size 0.3s ease, background-color var(--siirtyma),
+    color var(--siirtyma), border-color var(--siirtyma), transform var(--siirtyma);
+}
+
+header nav a:hover {
+  background-size: 70% 3px;
 }
